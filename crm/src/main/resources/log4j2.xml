@@ -1,0 +1,26 @@
+<Configuration>
+    <Appenders>
+
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <!-- 输出格式 -->
+            <PatternLayout pattern="[%d{MM-dd HH:mm:ss,SSS}] [%t] %5p\: %m%n"/>
+        </Console>
+    </Appenders>
+
+    <Loggers>
+
+        <!-- 配置记录器级别 -->
+        <Root level="debug">
+            <!-- 输出设置 -->
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+
+        <!-- 将调用mybatis的dao的包填入此处即可 -->
+
+        <logger name="com.com.home.test">
+            <level value="DEBUG" />
+            <AppenderRef ref="STDOUT" />
+        </logger>
+
+    </Loggers>
+</Configuration>

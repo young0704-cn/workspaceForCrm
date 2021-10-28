@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+  <display-name>crm</display-name>
+<!--
+    add/create   跳转至添加页面或打开添加模态窗口
+    save         执行添加操作
+    update       执行修改操作
+    get          执行查询操作
+    edit         跳转至修改页面，或打开修改模态窗口
+    delete       执行删除操作
+-->
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>com.home.crm.web.filter.EncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>*.do</url-pattern><!--jsp文件中没有设置字符集时，也需要过滤-->
+  </filter-mapping>
+
+  <filter>
+    <filter-name>LoginFilter</filter-name>
+    <filter-class>com.home.crm.web.filter.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+    <url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+
+  <!--用户控制器-->
+  <servlet>
+    <servlet-name>UserController</servlet-name>
+    <servlet-class>com.home.crm.settings.web.controller.UserController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserController</servlet-name>
+    <url-pattern>/settings/user/login.do</url-pattern>
+    <url-pattern>/save2</url-pattern>
+  </servlet-mapping>
+
+  <!--市场活动控制器-->
+  <servlet>
+    <servlet-name>ActivityController</servlet-name>
+    <servlet-class>com.home.crm.workbench.web.controller.ActivityController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ActivityController</servlet-name>
+    <url-pattern>/activity/getUserList.do</url-pattern>
+    <url-pattern>/activity/save.do</url-pattern>
+    <url-pattern>/activity/pageList.do</url-pattern>
+    <url-pattern>/activity/delete.do</url-pattern>
+    <url-pattern>/activity/edit.do</url-pattern>
+    <url-pattern>/activity/update.do</url-pattern>
+    <url-pattern>/activity/detail.do</url-pattern>
+    <url-pattern>/activity/remarkList.do</url-pattern>
+    <url-pattern>/activity/deleteRemark.do</url-pattern>
+    <url-pattern>/activity/saveRemark.do</url-pattern>
+    <url-pattern>/activity/updateRemark.do</url-pattern>
+  </servlet-mapping>
+</web-app>
