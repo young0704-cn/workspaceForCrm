@@ -21,8 +21,8 @@ public class UserController extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if ("/settings/user/login.do".equals(request.getServletPath())){
             login(request, response);
-        }else if ("/save2".equals(request.getServletPath())){
-            b();
+        }else if ("/xxx".equals(request.getServletPath())){
+
         }
     }
 

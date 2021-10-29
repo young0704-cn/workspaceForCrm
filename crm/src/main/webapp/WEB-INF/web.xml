@@ -12,6 +12,7 @@
     edit         跳转至修改页面，或打开修改模态窗口
     delete       执行删除操作
 -->
+  <!--过滤器-->
   <filter>
     <filter-name>EncodingFilter</filter-name>
     <filter-class>com.home.crm.web.filter.EncodingFilter</filter-class>
@@ -30,7 +31,10 @@
     <url-pattern>*.do</url-pattern>
     <url-pattern>*.jsp</url-pattern>
   </filter-mapping>
-
+  <!--监听器-->
+  <listener>
+    <listener-class>com.home.crm.web.listener.SystemListener</listener-class>
+  </listener>
   <!--用户控制器-->
   <servlet>
     <servlet-name>UserController</servlet-name>
@@ -69,6 +73,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ClueController</servlet-name>
-    <url-pattern>/clue/xxx.do</url-pattern>
+    <url-pattern>/clue/getUserList.do</url-pattern>
   </servlet-mapping>
 </web-app>

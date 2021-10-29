@@ -182,11 +182,10 @@ pageEncoding="UTF-8"%>
 						/*
 							{uList,activity}
 						*/
-						var html="<option></option>"
+						var html=""
 						$.each(result_data.uList,function (i,n) {
 							html+="<option value='"+n.id+"'>"+n.name+"</option>"
 						})
-
 						$("#edit-id").val(result_data.activity.id)
 						$("#edit-name").val(result_data.activity.name)
 						$("#edit-startDate").val(result_data.activity.startDate)
@@ -194,6 +193,7 @@ pageEncoding="UTF-8"%>
 						$("#edit-description").val(result_data.activity.description)
 						$("#edit-cost").val(result_data.activity.cost)
 						$("#edit-owner").html(html)
+						$("#edit-owner").val(result_data.activity.owner)
 
 						$("#editActivityModal").modal("show")
 					}
