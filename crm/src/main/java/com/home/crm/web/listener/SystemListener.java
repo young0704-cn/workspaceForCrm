@@ -29,7 +29,6 @@ public class SystemListener implements ServletContextListener {
         Set<Map.Entry<String,List<DicValue>>> entrySet=map.entrySet();
         for (Map.Entry<String,List<DicValue>> me:entrySet){
             application.setAttribute(me.getKey(),me.getValue());
-            System.out.println(me.getKey()+"------------------------");
         }
         System.out.println("服务器缓存数据字典over");
     }

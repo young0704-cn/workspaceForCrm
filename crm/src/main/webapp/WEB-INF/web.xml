@@ -74,5 +74,12 @@
   <servlet-mapping>
     <servlet-name>ClueController</servlet-name>
     <url-pattern>/clue/getUserList.do</url-pattern>
+    <url-pattern>/club/save.do</url-pattern>
+    <url-pattern>/club/pageList.do</url-pattern>
+    <url-pattern>/clue/detail.do</url-pattern>
+    <url-pattern>/clue/showActivityList.do</url-pattern>
+    <url-pattern>/clue/deleteCAR.do</url-pattern>
+    <url-pattern>/clue/activityListCAR.do</url-pattern>
+    <url-pattern>/clue/saveCAR.do</url-pattern>
   </servlet-mapping>
 </web-app>

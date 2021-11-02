@@ -5,6 +5,6 @@
 
 <mapper namespace="com.home.crm.settings.dao.DicValueDao">
     <select id="getValue" resultType="dicValue">
-        select * from tbl_dic_value where typeCode=#{typeCode}
+        select * from tbl_dic_value where typeCode=#{typeCode} order by orderNo;
     </select>
 </mapper>

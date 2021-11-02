@@ -132,7 +132,7 @@ pageEncoding="UTF-8"%>
 			if (confirm("删除选中的信息？")){
 				var $xz=$("input[name=xz]:checked")
 				var parm="";
-				if ($xz.length!=0){
+				if ($xz.length!==0){
 					//可能选择了一条或多条信息
 					for (i=0;i<$xz.length;i++){
 						parm+="ids="+$($xz[i]).val();
@@ -248,8 +248,12 @@ pageEncoding="UTF-8"%>
 		$.ajax({
 			url:"activity/pageList.do",
 			data:{
-				"pageNo":pageNo,"pageSize":pageSize,"endTime":$.trim($("#endTime").val()),"startTime":$.trim($("#startTime").val()),
-				"owner":$.trim($("#getActOwner").val()),"name":$.trim($("#getActName").val())
+				"pageNo":pageNo,
+				"pageSize":pageSize,
+				"endTime":$.trim($("#endTime").val()),
+				"startTime":$.trim($("#startTime").val()),
+				"owner":$.trim($("#getActOwner").val()),
+				"name":$.trim($("#getActName").val())
 			},
 			dataType:"json",
 			type:"get",

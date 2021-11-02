@@ -4,13 +4,137 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.home.crm.workbench.dao.ClueDao">
-	
-	
-  	
+    <select id="pageList" resultType="clue">
+        select c.id,c.fullname,c.mphone,c.phone,c.source,c.state,u.name as owner,c.company
+        from tbl_clue c
+        join tbl_user u
+        on u.id=c.owner
+
+        <where>
+            <if test="fullname!=null and fullname!=''">
+                fullname like '%' #{fullname} '%'
+            </if>
+
+            <if test="phone!=null and phone!=''">
+                and phone like '%' #{phone} '%'
+            </if>
+
+            <if test="mphone!=null and mphone!=''">
+                and mphone like '%' #{mphone} '%'
+            </if>
+
+            <if test="state!=null and state!=''">
+                and state =#{state}
+            </if>
+
+            <if test="owner!=null and owner!=''">
+                and owner like '%' #{owner} '%'
+            </if>
+
+            <if test="company!=null and company!=''">
+                and company like '%' #{company} '%'
+            </if>
+
+            <if test="source!=null and source!=''">
+                and source =#{source}
+            </if>
+
+        </where>
+        order by c.createTime desc limit #{skipCount},#{pageSize}
+
+
+    </select>
+
+    <select id="getTotal" resultType="int">
+        select count(*)
+        from tbl_clue c
+        join tbl_user u
+        on u.id=c.owner
+
+        <where>
+            <if test="fullname!=null and fullname!=''">
+                fullname like '%' #{fullname} '%'
+            </if>
+
+            <if test="phone!=null and phone!=''">
+                and phone like '%' #{phone} '%'
+            </if>
+
+            <if test="mphone!=null and mphone!=''">
+                and mphone like '%' #{mphone} '%'
+            </if>
+
+            <if test="state!=null and state!=''">
+                and state =#{state}
+            </if>
+
+            <if test="owner!=null and owner!=''">
+                and owner like '%' #{owner} '%'
+            </if>
+
+            <if test="company!=null and company!=''">
+                and company like '%' #{company} '%'
+            </if>
+
+            <if test="source!=null and source!=''">
+                and source =#{source}
+            </if>
+
+        </where>
+    </select>
+
+    <insert id="save">
+        insert into tbl_clue (
+            id,
+            fullname,
+            appellation,
+            owner,
+            company,
+            job,
+            email,
+            phone,
+            website,
+            mphone,
+            state,
+            source,
+            createBy,
+            createTime,
+            description,
+            contactSummary,
+            nextContactTime,
+            address
+        ) value (
+            #{id},
+            #{fullname},
+            #{appellation},
+            #{owner},
+            #{company},
+            #{job},
+            #{email},
+            #{phone},
+            #{website},
+            #{mphone},
+            #{state},
+            #{source},
+            #{createBy},
+            #{createTime},
+            #{description},
+            #{contactSummary},
+            #{nextContactTime},
+            #{address}
+        )
+    </insert>
+
+    <select id="getById" resultType="clue">
+        select c.fullname,c.company,c.job,c.email,c.mphone,c.phone,c.website,c.state,c.createBy,c.createTime,
+               c.editBy,c.editTime,c.description,c.nextContactTime,c.address,c.contactSummary,u.name as owner,
+               c.appellation,c.source,c.id
+        from tbl_clue c
+        join tbl_user u
+        on u.id=c.owner
+        where c.id=#{id}
+    </select>
 </mapper>
-
-
-
 
 
 

@@ -4,7 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.home.crm.workbench.dao.ActivityDao">
-    <select id="getActivityById" resultType="activity" parameterType="string">
+    <select id="activityListCAR" resultType="activity" parameterType="map">
+        select a.id,a.name,a.startDate,a.endDate,u.name as owner
+        from tbl_activity a
+        join tbl_user u
+        on u.id=a.owner
+        where a.name like '%' #{aname} '%'
+        and a.id not in (
+            select activityId
+            from tbl_clue_activity_relation
+            where clueId=#{clueId}
+        )
+    </select>
+    <select id="getActivityList" resultType="activity">
+        select a.name,a.startDate,a.endDate,
+               u.name as owner,
+               car.id as id
+        from tbl_activity a
+        join tbl_user u
+        on a.owner=u.id
+        join tbl_clue_activity_relation car
+        on a.id=car.activityId
+        where car.clueId=#{clueId}
+    </select>
+    <select id="getActivityById" resultType="activity">
         select * from tbl_activity where id = #{id};
     </select>
     <insert id="insert" parameterType="activity">

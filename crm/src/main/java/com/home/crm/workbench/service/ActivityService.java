@@ -25,4 +25,6 @@ public interface ActivityService {
     List<ActivityRemark> saveRemark(ActivityRemark remark) throws LoginException;
 
     List<ActivityRemark> updateRemark(ActivityRemark remark) throws LoginException;
+
+    List<Activity> activityListCAR(Map<String, Object> map) throws LoginException;
 }

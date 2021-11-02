@@ -16,4 +16,8 @@ public interface ActivityDao {
     int update(Map<String, Object> map);
 
     Activity detail(String id);
+
+    List<Activity> getActivityList(String clueId);
+
+    List<Activity> activityListCAR(Map<String, Object> map);
 }
