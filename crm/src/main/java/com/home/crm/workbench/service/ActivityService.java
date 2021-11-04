@@ -27,4 +27,6 @@ public interface ActivityService {
     List<ActivityRemark> updateRemark(ActivityRemark remark) throws LoginException;
 
     List<Activity> activityListCAR(Map<String, Object> map) throws LoginException;
+
+    List<Activity> activityList(String aname) throws LoginException;
 }

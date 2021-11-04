@@ -81,5 +81,16 @@
     <url-pattern>/clue/deleteCAR.do</url-pattern>
     <url-pattern>/clue/activityListCAR.do</url-pattern>
     <url-pattern>/clue/saveCAR.do</url-pattern>
+    <url-pattern>/clue/activityList.do</url-pattern>
+    <url-pattern>/clue/convert.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>TranController</servlet-name>
+    <servlet-class>com.home.crm.workbench.web.controller.TranController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TranController</servlet-name>
+    <url-pattern>/tran/add.do</url-pattern>
   </servlet-mapping>
 </web-app>

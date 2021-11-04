@@ -3,6 +3,7 @@ package com.home.crm.workbench.service;
 import com.home.crm.workbench.domain.Activity;
 import com.home.crm.workbench.domain.Clue;
 import com.home.crm.workbench.domain.ClueActivityRelation;
+import com.home.crm.workbench.domain.Tran;
 import com.home.crm.workbench.vo.ViewObject;
 
 import java.util.List;
@@ -21,4 +22,6 @@ public interface ClueService {
     boolean deleteCAR(String id);
 
     Boolean saveCAR(ClueActivityRelation car);
+
+    boolean convert(Tran tran, String clueId, String createBy);
 }

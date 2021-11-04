@@ -4,7 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.home.crm.workbench.dao.ClueRemarkDao">
-	
+	<select id="getCRD" resultType="clueRemark">
+        select * from tbl_clue_remark where clueId=#{clueId}
+    </select>
+
+    <delete id="delete">
+        delete from tbl_clue_remark where clueId=#{clueId}
+    </delete>
   	
 </mapper>
 

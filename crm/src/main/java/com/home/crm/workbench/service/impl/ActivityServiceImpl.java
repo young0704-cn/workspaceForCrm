@@ -128,4 +128,13 @@ public class ActivityServiceImpl implements ActivityService {
         }
         return activityList;
     }
+
+    @Override
+    public List<Activity> activityList(String aname) throws LoginException {
+            List<Activity> activityList=activityDao.activityList(aname);
+        if (activityList.size()==0){
+            throw new LoginException("未找到相关活动");
+        }
+        return activityList;
+    }
 }

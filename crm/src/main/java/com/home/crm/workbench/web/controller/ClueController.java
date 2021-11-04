@@ -11,6 +11,7 @@ import com.home.crm.utils.UUIDUtil;
 import com.home.crm.workbench.domain.Activity;
 import com.home.crm.workbench.domain.Clue;
 import com.home.crm.workbench.domain.ClueActivityRelation;
+import com.home.crm.workbench.domain.Tran;
 import com.home.crm.workbench.service.ActivityService;
 import com.home.crm.workbench.service.ClueService;
 import com.home.crm.workbench.service.impl.ActivityServiceImpl;
@@ -23,6 +24,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class ClueController extends HttpServlet {
@@ -44,7 +46,60 @@ public class ClueController extends HttpServlet {
             activityListCAR(request,response);
         }else if ("/clue/saveCAR.do".equals(request.getServletPath())){
             saveCAR(request,response);
+        }else if ("/clue/activityList.do".equals(request.getServletPath())){
+            activityList(request,response);
+        }else if ("/clue/convert.do".equals(request.getServletPath())){
+            convert(request,response);
         }
+    }
+
+    private void convert(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        ClueService service = (ClueService) ServiceFactory.getService(new ClueServiceImpl());
+        String clueId=request.getParameter("clueId");
+        String flg=request.getParameter("flg");
+        String activityId,money,name,expectedDate,stage,id;
+        String createBy=((User)request.getSession().getAttribute("user")).getName();
+        boolean success=false;
+        Tran tran=null;
+
+        if ("1".equals(flg)){
+            id=UUIDUtil.getUUID();
+            activityId=request.getParameter("activityId");
+            money=request.getParameter("money");
+            name=request.getParameter("name");
+            expectedDate=request.getParameter("expectedDate");
+            stage=request.getParameter("stage");
+
+            tran=new Tran();
+            tran.setId(id);
+            tran.setActivityId(activityId);
+            tran.setMoney(money);
+            tran.setName(name);
+            tran.setExpectedDate(expectedDate);
+            tran.setStage(stage);
+            tran.setCreateBy(createBy);
+        }
+        success=service.convert(tran,clueId,createBy);
+        if (success){
+            response.sendRedirect(request.getContextPath()+"/workbench/clue/index.jsp");
+        }
+    }
+
+    private void activityList(HttpServletRequest request, HttpServletResponse response) {
+        ActivityService service = (ActivityService) ServiceFactory.getService(new ActivityServiceImpl());
+        try {
+            List<Activity> activityList=service.activityList(request.getParameter("aname"));
+            Map<String,Object> map=new HashMap<>();
+            map.put("activityList",activityList);
+            map.put("success",true);
+            PrintJson.printJsonObj(response,map);
+        } catch (LoginException e) {
+            Map<String,Object> map=new HashMap<>();
+            map.put("msg",e.getMessage());
+            map.put("success",false);
+            PrintJson.printJsonObj(response,map);
+        }
+
     }
 
     private void saveCAR(HttpServletRequest request, HttpServletResponse response) {

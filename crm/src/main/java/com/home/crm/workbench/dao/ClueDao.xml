@@ -4,6 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.home.crm.workbench.dao.ClueDao">
+    <delete id="delete">
+        delete from tbl_clue where id=#{id}
+    </delete>
     <select id="pageList" resultType="clue">
         select c.id,c.fullname,c.mphone,c.phone,c.source,c.state,u.name as owner,c.company
         from tbl_clue c

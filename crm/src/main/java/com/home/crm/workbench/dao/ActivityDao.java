@@ -20,4 +20,6 @@ public interface ActivityDao {
     List<Activity> getActivityList(String clueId);
 
     List<Activity> activityListCAR(Map<String, Object> map);
+
+    List<Activity> activityList(String aname);
 }

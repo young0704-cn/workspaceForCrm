@@ -15,4 +15,6 @@ public interface ClueDao {
     int getTotal(Map<String, Object> map);
 
     Clue getById(String id);
+
+    int delete(String id);
 }
