@@ -92,5 +92,11 @@
   <servlet-mapping>
     <servlet-name>TranController</servlet-name>
     <url-pattern>/tran/add.do</url-pattern>
+    <url-pattern>/tran/getCustomerName.do</url-pattern>
+    <url-pattern>/tran/tranList.do</url-pattern>
+    <url-pattern>/tran/save.do</url-pattern>
+    <url-pattern>/tran/detail.do</url-pattern>
+    <url-pattern>/tran/tranHistoryList.do</url-pattern>
+    <url-pattern>/tran/tranPieChart.do</url-pattern>
   </servlet-mapping>
 </web-app>

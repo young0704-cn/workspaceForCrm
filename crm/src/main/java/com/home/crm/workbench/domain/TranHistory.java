@@ -1,7 +1,8 @@
 package com.home.crm.workbench.domain;
 
 public class TranHistory {
-	
+
+	private String possible;
 	private String id;
 	private String stage;
 	private String money;
@@ -9,7 +10,13 @@ public class TranHistory {
 	private String createTime;
 	private String createBy;
 	private String tranId;
-	
+
+	public String getPossible() {
+		return possible;
+	}
+	public void setPossible(String possible) {
+		this.possible = possible;
+	}
 	public String getId() {
 		return id;
 	}

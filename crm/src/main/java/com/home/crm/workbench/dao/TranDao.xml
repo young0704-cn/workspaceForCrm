@@ -4,6 +4,44 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.home.crm.workbench.dao.TranDao">
+    <select id="tranPieChart" resultType="map">
+        select
+        stage as name,
+        count(*) as value
+        from tbl_tran
+        group by stage
+    </select>
+
+    <select id="getById" resultType="tran">
+        select
+            tran.id,
+            tran.owner,
+            tran.money,
+            tran.name,
+            tran.expectedDate,
+            cus.name as customerId,
+            tran.stage,
+            tran.type,
+            tran.source,
+            act.name as activityId,
+            con.fullname as contactsId,
+            tran.createBy,
+            tran.createTime,
+            tran.editBy,
+            tran.editTime,
+            tran.description,
+            tran.contactSummary,
+            tran.nextContactTime
+        from tbl_tran tran
+        join tbl_customer cus
+        on tran.customerId=cus.id
+        left  join tbl_contacts con
+        on tran.contactsId=con.id
+        left join tbl_activity act
+        on tran.activityId =act.id
+        where tran.id=#{id}
+    </select>
+
 	<insert id="save" parameterType="tran">
         insert into tbl_tran value (
             #{id},
@@ -26,7 +64,22 @@
             #{nextContactTime}
         )
     </insert>
-  	
+
+    <select id="tranList" resultType="tran" parameterType="map">
+        select t.id,t.owner,t.name,t.stage,t.type,t.source,
+               cs.fullname as contactsId,cr.name as customerId,
+               t.createTime
+        from tbl_tran t
+        join tbl_contacts cs
+        on t.contactsId=cs.id
+        join tbl_customer cr
+        on t.customerId=cr.id
+        order by t.createTime desc limit #{skipCount},#{pageSize}
+    </select>
+
+    <select id="getTotal" resultType="int">
+        select count(*) from tbl_tran
+    </select>
 </mapper>
 
 
